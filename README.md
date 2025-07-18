@@ -35,15 +35,40 @@ Currency Table
 | ------------- | ---------------- |
 | id            | Primary Key, int |
 | Currency_name | varchar(100)     |
-
-Exchange Rate Table
-
-| Column        | Desription       |
-| ------------- | ---------------- |
-| id            | Primary key, int |
-| Current_id    | Foreign key      |
-| Exchange_rate | Double           |
-| created_time  |                  |
-| Update_time   |                  |
+| Exchange_rate | Decimal          |
+| Time          | DateTIme         |
 
 ### 2 API
+
+#### Description  
+
+Provides the exchange rate of a specified currency relative to a base currency at a specific time. If no time is specified, the latest exchange rate is returned.
+
+####  HTTP Method  `GET`
+
+#### Endpoint  
+
+#### ==/api/exchange-rate==
+
+#### Query Parameters
+
+| Name | Type   | Required | Description                                                  |
+| ---- | ------ | -------- | ------------------------------------------------------------ |
+| time | string | No       | ISO 8601 timestamp (e.g., `2025-07-18T13:00:00Z`) for historical query |
+
+#### Response
+
+```json
+{
+  "timestamp": "2025-07-18T13:00:00Z",
+  "rates": {
+    "1": 0.89,
+    "2": 138.25,
+    "3": 0.76,
+    "4": 7.24,
+    "5": 1.52,
+    ...
+  }
+}
+```
+
